@@ -11,18 +11,25 @@
     "lib": "lib"
   },
   "scripts": {
-    "start": "node examples/demo.js",
+    "start": "node server.js",
+    "demo": "node examples/demo.js",
     "test": "jest --detectOpenHandles",
     "lint": "eslint index.js lib/**/*.js examples/**/*.js"
   },
-
   "keywords": [
     "crawler",
     "spider",
     "scrape"
   ],
   "author": "WayneChang65",
+  "license": "MIT",
+  "bugs": {
+		"url": "https://github.com/WayneChang65/stepn-market-info/issues"
+	},
+	"homepage": "https://github.com/WayneChang65/stepn-market-info#readme",
   "dependencies": {
+    "@waynechang65/fml-consolelog": "^1.1.2",
+    "node-datetime": "^2.1.2",
     "puppeteer": "^18.2.1"
   },
   "devDependencies": {
