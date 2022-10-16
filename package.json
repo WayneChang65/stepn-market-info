@@ -1,0 +1,32 @@
+{
+  "name": "stepn-market-info",
+  "version": "0.0.1",
+  "description": "N/A",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "lib/**"
+  ],
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "node examples/demo.js",
+    "test": "jest --detectOpenHandles",
+    "lint": "eslint index.js lib/**/*.js test/**/*.js examples/**/*.js"
+  },
+
+  "keywords": [
+    "crawler",
+    "spider",
+    "scrape"
+  ],
+  "author": "WayneChang65",
+  "dependencies": {
+    "puppeteer": "^18.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.25.0",
+    "jest": "^29.2.0"
+  }
+}
