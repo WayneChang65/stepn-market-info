@@ -1,12 +1,16 @@
 'use strict';
+const { JsonDB, Config } = require('node-json-db');
 const fmlog = require('@waynechang65/fml-consolelog').log;
 const basic_f = require('./lib/basic_f.js');
 const mkt_crawler = require('./index.js');
+
+let db;
 
 async function init() {
 	await mkt_crawler.initialize().then(() => {
 		fmlog('sys_msg', ['INIT', 'mkt_crawler initialized.']);
 	});
+	db = new JsonDB(new Config('./db/stepnDB.json', true, false, '/'));
 }
 
 async function timerGetData() {
@@ -29,6 +33,10 @@ async function timerGetData() {
 				aryShoes[0] + aryShoes[1] + aryShoes[2] + aryShoes[3],
 				basic_f.getCurrentDateTime(),
 			]);
+
+			let timeNow = Date.now();
+			await db.push(`/stepn/${timeNow}/shoes`, aryShoes);
+			await db.push(`/stepn/${timeNow}/runners`, intRunners);
 
 		}, (1000 * 60 * 10) / debug_shortenDurationMultiplier); // 10分鐘
 	} catch (err) {
