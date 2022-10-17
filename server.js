@@ -15,7 +15,7 @@ async function init() {
 
 async function timerGetData() {
 	// Debug的時候，縮短週期時間的一個除數(正常時候是 1, 測試的時候可以設 3，加速)
-	let debug_shortenDurationMultiplier = 1;
+	let debug_shortenDurationMultiplier = 30;
 	try {
 		setInterval(async () => {
 			let intRunners = await mkt_crawler.getRunnersQuantity();
@@ -29,15 +29,14 @@ async function timerGetData() {
 			fmlog('crawler_msg', [
 				'Refresh',
 				`Runners: ${intRunners}`,
-				`com: ${aryShoes[0]}, uncom: ${aryShoes[1]}, rare: ${aryShoes[2]}, epic: ${aryShoes[3]}`,
-				aryShoes[0] + aryShoes[1] + aryShoes[2] + aryShoes[3],
+				`com: ${aryShoes[0].quality}, uncom: ${aryShoes[1].quality}, rare: ${aryShoes[2].quality}, epic: ${aryShoes[3].quality}`,
+				aryShoes[0].quality + aryShoes[1].quality + aryShoes[2].quality + aryShoes[3].quality,
 				basic_f.getCurrentDateTime(),
 			]);
 
 			let timeNow = Date.now();
 			await db.push(`/stepn/${timeNow}/shoes`, aryShoes);
 			await db.push(`/stepn/${timeNow}/runners`, intRunners);
-
 		}, (1000 * 60 * 10) / debug_shortenDurationMultiplier); // 10分鐘
 	} catch (err) {
 		console.error(err);
