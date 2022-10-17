@@ -17,11 +17,10 @@ const mkt_crawler = require('../index.js');
 		'\nRare: ', aryHits[2],
 		'\nEpic: ', aryHits[3]
 	);
-	//console.log(JSON.stringify(aryHits, null, 4));
 
 	// *** GetRunnersQuantity ***
 	console.log('\nTotal runners: ' + (await mkt_crawler.getRunnersQuantity()));
 
-	// *** Close      ***
+	// *** Close ***
 	await mkt_crawler.close();
 })();
