@@ -29,14 +29,20 @@ async function timerGetData() {
 			fmlog('crawler_msg', [
 				'Refresh',
 				`Runners: ${intRunners}`,
-				`com: ${aryShoes[0].quality}, uncom: ${aryShoes[1].quality}, rare: ${aryShoes[2].quality}, epic: ${aryShoes[3].quality}`,
-				aryShoes[0].quality + aryShoes[1].quality + aryShoes[2].quality + aryShoes[3].quality,
+				`com: ${aryShoes[0].quality}-${aryShoes[0].floor}, uncom: ${aryShoes[1].quality}-${aryShoes[1].floor}, rare: ${aryShoes[2].quality}-${aryShoes[2].floor}, epic: ${aryShoes[3].quality}-${aryShoes[3].floor}`,
+				aryShoes[0].quality +
+					aryShoes[1].quality +
+					aryShoes[2].quality +
+					aryShoes[3].quality,
 				basic_f.getCurrentDateTime(),
 			]);
 
 			let timeNow = Date.now();
-			await db.push(`/stepn/${timeNow}/shoes`, aryShoes);
-			await db.push(`/stepn/${timeNow}/runners`, intRunners);
+			await db.push(
+				'/stepn/',
+				[{ time: timeNow, runners: intRunners, shoes: aryShoes }],
+				false
+			);
 		}, (1000 * 60 * 5) / debug_shortenDurationMultiplier); // 5分鐘
 	} catch (err) {
 		console.error(err);
