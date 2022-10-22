@@ -17,7 +17,7 @@ async function init() {
 		fmlog('sys_msg', ['INIT', 'mkt_crawler initialized.']);
 	});
 	
-	db1 = new JsonDB(new Config('./db/stepnDB.json', true, false, '/'));
+	db1 = new JsonDB(new Config('./db/stepnDB1.json', true, false, '/'));
 	db2 = new JsonDB(new Config('./db/stepnDB2.json', true, false, '/'));
 }
 
