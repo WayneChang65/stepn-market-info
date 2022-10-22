@@ -23,7 +23,7 @@ async function init() {
 
 async function timerGetData() {
 	// Debug的時候，縮短週期時間的一個除數(正常時候是 1, 測試的時候可以設 3，加速)
-	let debug_shortenDurationMultiplier = 10;
+	let debug_shortenDurationMultiplier = 1;
 	try {
 		setInterval(async () => {
 			let intRunners = await mkt_crawler.getRunnersQuantity();
@@ -68,7 +68,7 @@ async function timerGetData() {
 				false
 			);
 
-		}, (1000 * 60 * 5) / debug_shortenDurationMultiplier); // 5分鐘
+		}, (1000 * 60 * 10) / debug_shortenDurationMultiplier); // 10分鐘
 	} catch (err) {
 		console.error(err);
 		await mkt_crawler.close();
